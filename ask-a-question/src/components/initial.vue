@@ -3,7 +3,7 @@
     <h1>Ask a question</h1>
     <div class="mb-3">
       <input name="question" type="text" class="form-control" id="question" v-model="question" />
-      <button class="btn" v-if="question" @click="handleNext">Next</button>
+      <button class="btn animate__animated animate__fadeIn" v-if="question" @click="handleNext">Next</button>
     </div>
     <div v-if="error" class="error">
       Your question is too short
@@ -27,6 +27,7 @@ export default {
       } else {
         this.error = false;
         this.$emit('goto', 1);
+        this.$emit('question', this.question);
       }
     }
   }
