@@ -9,6 +9,7 @@
         @question="handleQuestion"
         @showResult="showResult"
         @startOver="startOver"
+        @handleToast="handleToast"
       />
     </transition>
   </div>
@@ -52,6 +53,13 @@ export default {
       this.position = 0;
       this.question = '';
       this.result = '';
+    },
+    handleToast(config) {
+      this.$toast.show(config.message, {
+        type: config.type,
+        position: 'bottom',
+        duration: 2000
+      });
     }
   }
 }
@@ -78,3 +86,5 @@ export default {
   opacity: 0;
 }
 </style>
+
+<!-- https://ask-question-decide-it.surge.sh/ -->

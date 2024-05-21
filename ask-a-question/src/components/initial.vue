@@ -5,9 +5,6 @@
       <input name="question" type="text" class="form-control" id="question" v-model="question" />
       <button class="btn animate__animated animate__fadeIn" v-if="question" @click="handleNext">Next</button>
     </div>
-    <div v-if="error" class="error">
-      Your question is too short
-    </div>
   </div>
 </template>
 
@@ -15,15 +12,16 @@
 export default {
   data() {
     return {
-      question: '',
-      error: false
+      question: ''
     }
   },
   methods: {
     handleNext(e) {
       e.preventDefault();
       if (this.question.length <= 5) {
-        this.error = true;
+        this.$emit('handleToast', {
+          message: 'Your question is too short', type: 'error'
+        });
       } else {
         this.error = false;
         this.$emit('goto', 1);
